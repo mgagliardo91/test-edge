@@ -1,4 +1,5 @@
 #!/bin/bash
+set -e
 
 # Locate the directory of the script
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
@@ -31,7 +32,7 @@ install_docker() {
   echo "Installing docker"
 
   curl -fsSL https://download.docker.com/linux/ubuntu/gpg | apt-key add -
-  add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable"
+  add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable" -y
   apt-get update
   apt-get install -y docker-ce
   systemctl enable docker

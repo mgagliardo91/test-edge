@@ -2,22 +2,16 @@
 set -e
 
 # Locate the directory of the script
-SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 NIO_DIR="/nio"
-
-# Load the .env file if it exists
-ENV_FILE="$SCRIPT_DIR/.env"
-if [ -f "$ENV_FILE" ]; then
-  # Export environment variables from the .env file
-  set -a
-  source "$ENV_FILE"
-  set +a
-fi
 
 install_remoteit() {
   if [ ! -d "/nio/remoteit" ]; then
     echo "Creating remoteit directory"
     mkdir -p $NIO_DIR/remoteit
+  fi
+
+  if [ ! -L "/etc/remoteit" ]; then
+    echo "Linking remoteit directory"
     ln -s $NIO_DIR/remoteit /etc/remoteit
   fi
 

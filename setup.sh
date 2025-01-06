@@ -10,7 +10,7 @@ install_remoteit() {
     mkdir -p $NIO_DIR/remoteit
   fi
 
-  if [ ! -L "/etc/remoteit" ]; then
+  if [ ! -e "/etc/remoteit" ] || [ ! -L "/etc/remoteit" ]; then
     echo "Linking remoteit directory"
     ln -s $NIO_DIR/remoteit /etc/remoteit
   fi
